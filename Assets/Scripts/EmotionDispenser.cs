@@ -9,8 +9,7 @@ public class EmotionDispenser : MonoBehaviour
     // When the minigame completes they get an emotion orb - that geets dumped out
 
     private bool active = false;
-    public EmotionMinigame Minigame;
-    public bool MinigameActive = false;
+    public GameObject Minigame;
     public GameObject EmotionRewardPrefab;
     public Transform EmotionRewardSpawnPosition;
 
@@ -26,13 +25,12 @@ public class EmotionDispenser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Minigame.activeInHierarchy) return;
         
-        if (Minigame.isActiveAndEnabled) return;
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Minigame.gameObject.SetActive(true);
-            Minigame.StartMinigame();
+            Minigame.gameObject.SetActive(true); 
         }
         
     }
@@ -40,5 +38,15 @@ public class EmotionDispenser : MonoBehaviour
     public void DispenseEmotion()
     {
         Instantiate(EmotionRewardPrefab, EmotionRewardSpawnPosition);
+    }
+    
+    
+    public void MinigameResult(bool success)
+    {
+        if (success)
+        {
+            DispenseEmotion();
+        }
+        Minigame.gameObject.SetActive(false);
     }
 }
