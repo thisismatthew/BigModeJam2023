@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private Animator anim;
+    public Animator BrainRigAnimator;
+    public GameObject VisualsFlipper;
     public CharacterState CurrentState = CharacterState.idle;
     private CharacterState newState = CharacterState.idle;
     private bool facingRight = false;
@@ -58,16 +59,26 @@ public class PlayerMovement : MonoBehaviour
         if (newState != CurrentState)
         {
             CurrentState = newState;
-            // switch (CurrentState)
-            // {
-            //     case CharacterState.idle:
-            //         if (facingRight) anim.Play("anim_OldLadyRight"); else anim.Play("anim_OldLadyLeft");
-            //         break;
-            //     case CharacterState.walking:
-            //         if (facingRight) anim.Play("anim_OldWalkinRight"); else anim.Play("anim_OldWalkinLeft");
-            //         break;
-            // }
+            switch (CurrentState)
+            {
+                case CharacterState.idle:
+                    BrainRigAnimator.Play("brain_idle");
+                    break;
+                case CharacterState.walking:
+                    BrainRigAnimator.Play("brain_walk");
+                    break;
+            }
 
+            Vector3 flipscale = Vector3.one;
+            if (facingRight)
+            {
+               flipscale.x  = -1;
+            }
+            else
+            {
+                flipscale.x = 1;
+            }
+            VisualsFlipper.transform.localScale = flipscale;
         }
     }
 }
