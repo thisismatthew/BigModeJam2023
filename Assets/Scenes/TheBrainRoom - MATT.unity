@@ -1564,7 +1564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbff20f6b4fc648a482ee3c1851ac1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  moveSpeed: 0.3
   BrainRigAnimator: {fileID: 682345382}
   VisualsFlipper: {fileID: 228215107}
   CurrentState: 0
