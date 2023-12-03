@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (movement.x > 0) facingRight = true;
             if (movement.x < 0) facingRight = false;
+            FlipCharacterFacing();
             newState = CharacterState.walking;
         }
     }
@@ -68,17 +69,20 @@ public class PlayerMovement : MonoBehaviour
                     BrainRigAnimator.Play("brain_walk");
                     break;
             }
-
-            Vector3 flipscale = Vector3.one;
-            if (facingRight)
-            {
-               flipscale.x  = -1;
-            }
-            else
-            {
-                flipscale.x = 1;
-            }
-            VisualsFlipper.transform.localScale = flipscale;
         }
+    }
+
+    private void FlipCharacterFacing()
+    {
+        Vector3 flipscale = Vector3.one;
+        if (facingRight)
+        {
+            flipscale.x  = -1;
+        }
+        else
+        {
+            flipscale.x = 1;
+        }
+        VisualsFlipper.transform.localScale = flipscale;
     }
 }
