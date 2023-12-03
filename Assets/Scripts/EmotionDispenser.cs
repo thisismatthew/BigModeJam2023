@@ -28,7 +28,7 @@ public class EmotionDispenser : MonoBehaviour
         if (Minigame.activeInHierarchy) return;
         
         
-        if (Input.GetKeyDown(KeyCode.Space) && active)
+        if (Input.GetKeyDown(KeyCode.E) && active)
         {
             Minigame.gameObject.SetActive(true); 
         }
