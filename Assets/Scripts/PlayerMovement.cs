@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Debug.Log(movement.x);
             if (movement.x > 0) facingRight = true;
             if (movement.x < 0) facingRight = false;
             newState = CharacterState.walking;
@@ -62,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
             switch (CurrentState)
             {
                 case CharacterState.idle:
+                    rb.velocity = Vector2.zero;
                     BrainRigAnimator.Play("brain_idle");
                     break;
                 case CharacterState.walking:
